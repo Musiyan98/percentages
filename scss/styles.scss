@@ -1,0 +1,55 @@
+table {
+   table-layout: fixed;
+   width: 100%;
+   border-collapse: collapse;
+   // border: 3px solid purple;
+ 
+   margin-bottom: 40px;
+}
+
+th, td {
+   border: 3px solid purple;
+}
+
+
+.page-title {
+   text-align: center;
+   padding: 70px 0;
+}
+.commission {
+   display: flex;
+   // flex-direction: column;
+
+		&__label {
+         padding: 20px;
+		}
+
+		&__input {
+         margin: 5px;
+         margin-left: 0;
+         padding: 5px;
+         border: 1px solid;
+		}
+
+		&__label-unnecessarily {
+         // display: none;
+		}
+
+		&__input-unnecessarily {
+		}
+}
+.commission-table {
+
+		&__title {
+		}
+
+		&__head {
+		}
+
+		&__calculations {
+		}
+}
+.commission-table-kdv {
+}
+.commission-table-ku {
+}
