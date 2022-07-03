@@ -27,6 +27,8 @@
          <span class="commision__label-text"> сума сосбистих коштів при переказу</span>
          <input class="commission__input commission__input-unnecessarily" id="own-funds" type="number">
       </label>
+
+      <button type="button" id="send-value">Розрахувати</button>
    </form>
 
    <table class="commission-table commission-table-kdv">
@@ -46,11 +48,11 @@
        <tbody class="commission-table__calculations">
          <tr>
            <td>Сума переказу</td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
-           <td></td>
+           <td id="transfer-value-kdv"></td>
+           <td id="commission-on-ku"></td>
+           <td id="commission-on-kdv"></td>
+           <td id="commission-ukr-bank"></td>
+           <td id="commission-foreign-bank"></td>
          </tr>
        </tbody>
    </table>
@@ -132,5 +134,8 @@
        </tbody>
    </table>
 
+
+
+   <script src="./js/script.js"></script>
 </body>
 </html>
