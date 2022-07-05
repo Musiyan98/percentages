@@ -170,6 +170,9 @@
       document.querySelector('.own-funds').style.height = 'auto';
       document.querySelector('.credit-funds').style.height = 'auto';
 
+      ownFunds.transferValue.innerHTML = 0;
+      creditFunds.transferValue.innerHTML = 0;
+
       amountPayment.transferValue.innerHTML = transferValue;
 
       amountPayment.commissionOnKu.innerHTML = (transferValue * 1.03);
