@@ -2,27 +2,28 @@
 let transferAmount = document.getElementById('transfer-amount');
 let inputValue = document.getElementById('send-value');
 
+
+// inputValue.addEventListener('click', commisionTransferValueKDV)
+inputValue.addEventListener('click', commisionTransferValueKU)
+
 const kdv = {
    transferValueKdv: document.getElementById('transfer-value-kdv'),
-   commissionOnKu: document.getElementById('commission-on-ku'),
-   commissioOonKdv: document.getElementById('commission-on-kdv'),
-   commissionUkrBank: document.getElementById('commission-ukr-bank'),
-   commissionForeignBank: document.getElementById('commission-foreign-bank'),
+   commissionOnKu: document.getElementById('kdv-commission-on-ku'),
+   commissioOonKdv: document.getElementById('kdv-commission-on-kdv'),
+   commissionUkrBank: document.getElementById('kdv-commission-ukr-bank'),
+   commissionForeignBank: document.getElementById('kdv-commission-foreign-bank'),
 };
 const kdvCommision = {
    transferValueKdv: document.getElementById('transfer-value-kdv-commision'),
-   commissionOnKu: document.getElementById('commission-on-ku-commision'),
-   commissioOonKdv: document.getElementById('commission-on-kdv-commision'),
-   commissionUkrBank: document.getElementById('commission-ukr-bank-commision'),
-   commissionForeignBank: document.getElementById('commission-foreign-bank-commision'),
+   commissionOnKu: document.getElementById('kdv-commission-on-ku-commision'),
+   commissioOonKdv: document.getElementById('kdv-commission-on-kdv-commision'),
+   commissionUkrBank: document.getElementById('kdv-commission-ukr-bank-commision'),
+   commissionForeignBank: document.getElementById('kdv-commission-foreign-bank-commision'),
 };
 
-// console.log(transferValue);
-inputValue.addEventListener('click', commisionTransferValue)
+function  commisionTransferValueKDV () {
 
-function  commisionTransferValue () { 
    let transferValue =  transferAmount.value;
-   console.log(transferValue); 
 
    kdv.transferValueKdv.innerHTML = transferValue;
    kdv.commissionOnKu.innerHTML = transferValue;
@@ -67,8 +68,55 @@ function  commisionTransferValue () {
          kdvCommision.commissionForeignBank.innerHTML = 50
       };
 
-   //       kdvCommision.commissionOnKu.innerHTML = (Number(kdv.commissionOnKu) - Number(transferValue));
-   //       kdvCommision.commissioOonKdv.innerHTML = (Number(kdv.commissioOonKdv) - Number(transferValue));
-   //       kdvCommision.commissionUkrBank.innerHTML = (Number(kdv.commissionUkrBank) - Number(transferValue));
-   //       kdvCommision.commissionForeignBank.innerHTML = (Number(kdv.commissionForeignBank) - Number(transferValue));
+};
+
+const kuSumOwnFunds = {
+   valueTransfer: document.getElementById('own-funds-ku-transfer-value-ku'),
+   commissionOnKu: document.getElementById('own-funds-ku-commission-on-ku'),
+   commissionOnKdv: document.getElementById('own-funds-ku-commission-on-kdv'),
+   commissionUkrBank: document.getElementById('own-funds-ku-commission-ukr-bank'),
+   commissionForeignBank: document.getElementById('own-funds-ku-commission-foreign-bank'),   
+};
+
+const kuSumCreditFunds = {
+   valueTransfer: document.getElementById('credits-funds-ku-transfer-value-ku'),
+   commissionOnKu: document.getElementById('credits-funds-ku-commission-on-ku'),   
+   commissionOnKdv: document.getElementById('credits-funds-ku-commission-on-kdv'),
+   commissionUkrBank: document.getElementById('credits-funds-ku-commission-ukr-bank'),
+   commissionForeignBank: document.getElementById('credits-funds-ku-commission-foreign-bank'),   
+};
+
+const kuTotalCommissionValue = {
+   valueTransfer: document.getElementById('total-ku-transfer-value-ku'),   
+   commissionOnKu: document.getElementById('total-ku-commission-on-ku'),
+   commissionOnKdv: document.getElementById('total-ku-commission-on-kdv'),
+   commissionUkrBank: document.getElementById('total-ku-commission-ukr-bank'),
+   commissionForeignBank: document.getElementById('total-ku-commission-foreign-bank'),   
+};
+
+function commisionTransferValueKU () {
+
+};
+
+
+const sumOwnFunds ={
+valueTransfer: document.getElementById('own-funds-transfer-value'),
+commissionOnKu: document.getElementById('own-funds-ku-commission-on-ku'),
+commissionOnKdv: document.getElementById('own-funds-ku-commission-on-kdv'),
+commissionUkrBank: document.getElementById('own-funds-ku-commission-ukr-bank'),
+commissionForeignBank: document.getElementById('own-funds-ku-commission-foreign-bank'),
+};
+const sumCreditFunds ={
+valueTransfer: document.getElementById('credits-funds-transfer-value'),
+commissionOnKu: document.getElementById('credits-funds-commission-on-ku'),
+commissionOnKdv: document.getElementById('credits-funds-commission-on-kdv'),
+commissionUkrBank: document.getElementById('credits-funds-commission-ukr-bank'),
+commissionForeignBank: document.getElementById('credits-funds-commission-foreign-bank'),
+};
+const totalCommissionValue ={
+valueTransfer: document.getElementById('total-transfer-value'),
+commissionOnKu: document.getElementById('total-commission-on-ku'),
+commissionOnKdv: document.getElementById('total-commission-on-kdv'),
+commissionUkrBank: document.getElementById('total-commission-ukr-bank'),
+commissionForeignBank: document.getElementById('total-commission-foreign-bank'),
 };

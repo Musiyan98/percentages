@@ -18,10 +18,13 @@ th, td {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .commission__label {
-  padding: 20px;
+  padding: 5px;
 }
 
 .commission__input {
@@ -29,5 +32,31 @@ th, td {
   margin-left: 0;
   padding: 5px;
   border: 1px solid;
+}
+
+.commission__label-unnecessarily {
+  display: none;
+}
+
+.commission-table {
+  margin-top: 50px;
+}
+
+#send-value {
+  margin-top: 15px;
+}
+
+.column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.commission-table__title {
+  margin-bottom: 20px;
 }
 /*# sourceMappingURL=styles.css.map */
