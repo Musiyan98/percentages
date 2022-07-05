@@ -24,6 +24,10 @@
             <span class="commision__label-text"> вкажіть суму переказу</span>
             <input class="commission__input" value="1000" id="transfer-amount" type="number">
          </label>
+         <label class="commission__label commission__label-unnecessarily" for="own-funds">
+            <span class="commision__label-text"> сума сосбистих коштів при переказу</span>
+            <input class="commission__input commission__input-unnecessarily" id="own-funds" type="number">
+         </label>
       </div>
       <div class="type-of-money-radio">
          <p>переказ за рахунок:</p>
@@ -37,14 +41,9 @@
       </label><br>
       <label for="mix-funds">
          частина коштів особисті, решта кредитні
-         <input type="radio" name="type-money" class="type-money" id="mix-funds" value="mix-funds">
+         <input type="radio"  name="type-money" class="type-money" id="mix-funds" value="mix-funds">
       </label>
    </div>
-
-   <label class="commission__label commission__label-unnecessarily" for="own-funds">
-      <span class="commision__label-text"> сума сосбистих коштів при переказу</span>
-      <input class="commission__input commission__input-unnecessarily" id="own-funds" type="number">
-   </label>
 
       <button type="button" id="send-value">Розрахувати</button>
    </form>

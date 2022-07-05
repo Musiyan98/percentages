@@ -229,8 +229,82 @@
       };
    };
 
+   function  commisionTransferKUMixMoney () {
 
-   function ConsoleRadio () {
+      let transferValue =  transferAmount.value;
+      let selfMoney = ownFundsValue.value;
+      let creditMoney = (transferAmount.value - ownFundsValue.value);
+
+      ownFunds.transferValue.innerHTML = 'Частина переказу що піде в рахунок кредитного ліміту';
+      creditFunds.transferValue.innerHTML = creditMoney;
+
+      tableLine.tableTitle.innerHTML = "Комісії при переказі коштів з КУ";
+      document.querySelector('.own-funds').style.visibility = 'visible';
+      document.querySelector('.credit-funds').style.visibility = 'visible';
+      document.querySelector('.own-funds').style.height = 'auto';
+      document.querySelector('.credit-funds').style.height = 'auto';
+
+      amountPayment.transferValue.innerHTML = transferValue;
+
+      amountPayment.commissionOnKu.innerHTML = (creditMoney * 1.03 + Number(selfMoney)).toFixed(2);
+      creditFunds.commissionOnKu.innerHTML = (creditMoney * 0.03).toFixed(2);
+      totalCommission.commissionOnKu.innerHTML = (creditMoney * 0.03).toFixed(2);
+      
+      if (transferValue >= 5000) {
+         amountPayment.commissionOnKdv.innerHTML = ((Number(creditMoney)+25)*1.03 + Number(selfMoney)).toFixed(2);
+         ownFunds.commissionOnKdv.innerHTML = 25;
+         creditFunds.commissionOnKdv.innerHTML = ((Number(creditMoney)+25) * 0.03).toFixed(2);
+         totalCommission.commissionOnKdv.innerHTML = (((Number(creditMoney)+25)*0.03) + 25).toFixed(2);
+      }
+         else if (transferValue <= 0) {
+            amountPayment.commissionOnKdv.innerHTML = '0';
+            ownFunds.commissionOnKdv.innerHTML = 0;
+         }
+         else {
+            amountPayment.commissionOnKdv.innerHTML = ((Number(transferValue)/0.995)+((Number(transferValue)/0.995)-Number(selfMoney))*0.03).toFixed(2);
+            ownFunds.commissionOnKdv.innerHTML = ((Number(transferValue)/0.995)-Number(transferValue)).toFixed(2);
+            creditFunds.commissionOnKdv.innerHTML = (((Number(transferValue)/0.995)-Number(selfMoney))*0.03).toFixed(2);
+            totalCommission.commissionOnKdv.innerHTML = ((Number(transferValue)/0.995-Number(selfMoney))*0.03+(Number(transferValue)/0.995-Number(transferValue))).toFixed(2);
+      };
+   
+      if (transferValue >= 1000) {
+         amountPayment.commissionUkrBank.innerHTML = ((transferValue*0.005 + Number(creditMoney))*0.03 + transferValue*1.005).toFixed(2);
+         ownFunds.commissionUkrBank.innerHTML = (transferValue*0.005).toFixed(2);
+         creditFunds.commissionUkrBank.innerHTML = ((transferValue*0.005 + Number(creditMoney))*0.03).toFixed(2);
+         totalCommission.commissionUkrBank.innerHTML = ((transferValue*0.005 + Number(creditMoney))*0.03 + transferValue*0.005).toFixed(2);}
+   
+         else if (transferValue <= 0) {
+            amountPayment.commissionUkrBank.innerHTML = '0';
+            ownFunds.commissionUkrBank.innerHTML = 0;
+         } 
+         else {
+            amountPayment.commissionUkrBank.innerHTML = ((Number(creditMoney)+5)*0.03+5+Number(transferValue)).toFixed(2);
+            ownFunds.commissionUkrBank.innerHTML = 5;
+            creditFunds.commissionUkrBank.innerHTML = ((Number(creditMoney)+5)*0.03).toFixed(2);
+            totalCommission.commissionUkrBank.innerHTML = ((Number(creditMoney)+5)*0.03+5).toFixed(2);
+      };
+            
+
+      if (transferValue >= 2500) {
+         amountPayment.commissionForeignBank.innerHTML = ((transferValue*0.02 + Number(creditMoney))*0.03 + transferValue*1.02).toFixed(2);
+         ownFunds.commissionForeignBank.innerHTML = (transferValue*0.02).toFixed(2);
+         creditFunds.commissionForeignBank.innerHTML = ((transferValue*0.02 + Number(creditMoney))*0.03).toFixed(2);
+         totalCommission.commissionForeignBank.innerHTML = ((transferValue*0.02 + Number(creditMoney))*0.03 + transferValue*0.02).toFixed(2);}
+   
+         else if (transferValue <= 0) {
+            amountPayment.commissionForeignBank.innerHTML = '0';
+            ownFunds.commissionForeignBank.innerHTML = 0;
+         } 
+         else {
+            amountPayment.commissionForeignBank.innerHTML = ((Number(creditMoney)+50)*0.03+50+Number(transferValue)).toFixed(2);
+            ownFunds.commissionForeignBank.innerHTML = 50;
+            creditFunds.commissionForeignBank.innerHTML = ((Number(creditMoney)+50)*0.03).toFixed(2);
+            totalCommission.commissionForeignBank.innerHTML = ((Number(creditMoney)+50)*0.03+50).toFixed(2);
+      };
+   };
+
+
+   function selestTypeOfKUTransfer () {
       let typeOfMoney = document.querySelectorAll('.type-money');
       for (let i = 0; i < typeOfMoney.length; i++) {
          if (typeOfMoney[i].checked) {
@@ -238,16 +312,16 @@
             break;
          }
       }
-      console.log(moneyType);
+      // console.log(moneyType);
       if (moneyType == 'only-own-funds') {
          commisionTransferKUSelfMoney();
-      console.log('svoi');
+      // console.log('svoi');
       } else if (moneyType == 'only-credit-funds') {
          commisionTransferKUCreditMoney();
-      console.log('credit');
+      // console.log('credit');
       } else {
-         commisionTransferKUCreditMoney();
-         console.log('mix');
+         commisionTransferKUMixMoney();
+         // console.log('mix');
       }
    }
 
@@ -255,7 +329,7 @@
       let cardType = document.getElementById('type-card');
 
       if (cardType.value == 'ku') {
-         ConsoleRadio();
+         selestTypeOfKUTransfer();
       } else  if (cardType.value == 'kdv') {
          commisionTransferValueKDV();
       }

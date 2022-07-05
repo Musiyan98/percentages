@@ -33,7 +33,7 @@ th, td {
 		}
 
 		&__label-unnecessarily {
-         display: none;
+         // display: none;
 		}
 
 		&__input-unnecessarily {
@@ -61,6 +61,7 @@ margin-top: 50px;
 .column {
    display: flex;
    flex-direction: column;
+   align-items:baseline;
 }
 
 .commission-table__title {
