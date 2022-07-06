@@ -27,6 +27,10 @@ th, td {
   padding: 5px;
 }
 
+.commission__label.is-hiden {
+  display: none;
+}
+
 .commission__input {
   margin: 5px;
   margin-left: 0;
@@ -38,8 +42,17 @@ th, td {
   margin-top: 50px;
 }
 
+.type-of-money-radio.is-hiden {
+  display: none;
+}
+
 #send-value {
   margin-top: 15px;
+}
+
+.own-funds.is-hiden,
+.credit-funds.is-hiden {
+  display: none;
 }
 
 .column {

@@ -23,6 +23,9 @@ th, td {
 
 		&__label {
          padding: 5px;
+         &.is-hiden{
+            display: none;
+         }
 		}
 
 		&__input {
@@ -51,11 +54,21 @@ margin-top: 50px;
 }
 
 .type-of-money-radio {
-   // flex-grow:1;
+   &.is-hiden{
+      display: none;
+   }
 }
 
 #send-value {
    margin-top: 15px;
+}
+
+
+.own-funds, 
+.credit-funds {
+   &.is-hiden{
+      display: none;
+   }
 }
 
 .column {

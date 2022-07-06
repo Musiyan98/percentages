@@ -339,15 +339,10 @@
    };
    
 
-   
-   
-   
-
-
-
-
-
    inputValue.addEventListener ('click', selestTypeOfTransfer);
+
+   let cardType = document.getElementById('type-card');
+   // cardType.addEventListener('click', displayInput);
 
    // function selectedTypeOfMoney () {
    //    let typeOfMoney = document.querySelectorAll('.type-money');
