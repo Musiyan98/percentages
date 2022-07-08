@@ -14,34 +14,34 @@
    <form class="commission">
       <div class="column">
          <label class="commission__label" for="type-card">
-            <span class="commission__label-text"> переказ з карти</span>
+            <span class="commission__label-text"> Переказ з карти</span>
             <select  class="commission__input" id="type-card">
                <option value="kdv">Карта для виплат</option>
                <option value="ku">карта універсальна</option>
             </select>
          </label>
          <label class="commission__label" for="transfer-amount">
-            <span class="commision__label-text"> вкажіть суму переказу</span>
+            <span class="commision__label-text"> Вкажіть суму переказу</span>
             <input class="commission__input" value="1000" id="transfer-amount" type="number">
          </label>
          <label class="commission__label is-hiden" for="own-funds" id="own-funds-label">
-            <span class="commision__label-text"> сума сосбистих коштів при переказу</span>
+            <span class="commision__label-text"> Сума сосбистих коштів при переказу</span>
             <input class="commission__input commission__input-unnecessarily" id="own-funds" type="number">
          </label>
       </div>
       <div class="type-of-money-radio is-hiden">
-         <p>переказ за рахунок:</p>
-      <label for="only-own-funds">
-         лише особистих коштів
+         <p class="type-money-subtitle">переказ за рахунок:</p>
+      <label class="type-money-label" for="only-own-funds">
          <input type="radio" checked name="type-money" class="type-money" id="only-own-funds" value="only-own-funds">
+         Лише особистих коштів
       </label> <br>
-      <label for="only-credit-funds">
-         лише кредитних коштів
+      <label class="type-money-label" for="only-credit-funds">
          <input type="radio" name="type-money" class="type-money" id="only-credit-funds" value="only-credit-funds">
+         Лише кредитних коштів
       </label><br>
-      <label for="mix-funds">
-         частина коштів особисті, решта кредитні
+      <label class="type-money-label" for="mix-funds">
          <input type="radio"  name="type-money" class="type-money" id="mix-funds" value="mix-funds">
+         Частина коштів особисті, решта кредитні
       </label>
    </div>
 

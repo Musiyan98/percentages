@@ -349,6 +349,7 @@ function displayMoneyRadio() {
 
    } else {
       document.querySelector('.type-of-money-radio').classList.add('is-hiden');
+      hidenSelfMoney ();
    }
 };
 
