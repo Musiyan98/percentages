@@ -1,122 +1,98 @@
+const typeCard = document.getElementById('procent-valeu');
+const amountDebit = document.getElementById('amount-debit');
+const amountFill = document.getElementById('amount-fill');
+const dateFill = document.getElementById('date-fill');
+const inputValue = document.getElementById('send-value');
+// const procentTable = document.getElementsByClassName('procent-calculation__info');
 
-let transferAmount = document.getElementById('transfer-amount');
-let inputValue = document.getElementById('send-value');
-
-
-// inputValue.addEventListener('click', commisionTransferValueKDV)
-inputValue.addEventListener('click', commisionTransferValueKU)
-
-const kdv = {
-   transferValueKdv: document.getElementById('transfer-value-kdv'),
-   commissionOnKu: document.getElementById('kdv-commission-on-ku'),
-   commissioOonKdv: document.getElementById('kdv-commission-on-kdv'),
-   commissionUkrBank: document.getElementById('kdv-commission-ukr-bank'),
-   commissionForeignBank: document.getElementById('kdv-commission-foreign-bank'),
-};
-const kdvCommision = {
-   transferValueKdv: document.getElementById('transfer-value-kdv-commision'),
-   commissionOnKu: document.getElementById('kdv-commission-on-ku-commision'),
-   commissioOonKdv: document.getElementById('kdv-commission-on-kdv-commision'),
-   commissionUkrBank: document.getElementById('kdv-commission-ukr-bank-commision'),
-   commissionForeignBank: document.getElementById('kdv-commission-foreign-bank-commision'),
+const totalProcent = {
+   amountDebit: document.getElementById('total-procent-amount-debit'),
+   lastDate: document.getElementById('total-procent-last-date'),
+   totalTime: document.getElementById('total-procent-total-time'),
+   totalValue: document.getElementById('total-procent-total-value'),
 };
 
-function  commisionTransferValueKDV () {
+inputValue.addEventListener('click', createTable);
 
-   let transferValue =  transferAmount.value;
-
-   kdv.transferValueKdv.innerHTML = transferValue;
-   kdv.commissionOnKu.innerHTML = transferValue;
-   kdvCommision.commissionOnKu.innerHTML = (0);
-
-
-   if (transferValue >= 5000) {
-      kdv.commissioOonKdv.innerHTML = (Number(transferValue)+25).toFixed(2);
-      kdvCommision.commissioOonKdv.innerHTML = 25}
-       
-      else if (transferValue <= 0) {
-         kdv.commissioOonKdv.innerHTML = '0';
-         kdvCommision.commissioOonKdv.innerHTML = 0;
+function createTable() {
+   let procentTable = document.querySelector('.procent-calculation__info');
+   // let procentTableChild = procentTable.children;
+   let tableOldInfo = document.querySelectorAll('.row');
+   if (tableOldInfo.length != 0) {
+      for (let i = 0; i < tableOldInfo.length; i++){
+      tableOldInfo[i].remove();
       }
-      else {
-         kdv.commissioOonKdv.innerHTML = (Number(transferValue)/0.995).toFixed(2);
-         kdvCommision.commissioOonKdv.innerHTML = ((Number(transferValue)/0.995)-Number(transferValue)).toFixed(2)};
+   };
 
-   if (transferValue >= 1000) {
-      kdv.commissionUkrBank.innerHTML = (transferValue*1.005).toFixed(2);
-      kdvCommision.commissionUkrBank.innerHTML = (transferValue*0.005).toFixed(2)}
+   let amountDebitValue = Number(amountDebit.value);
+   let amountFillValue = Number(amountFill.value);
+   let totalProcentCount = Number(0);
 
-      else if (transferValue <= 0) {
-         kdv.commissionUkrBank.innerHTML = '0';
-         kdvCommision.commissionUkrBank.innerHTML = 0;
-      } 
-      else {
-         kdv.commissionUkrBank.innerHTML = (Number(transferValue)+5).toFixed(2);
-         kdvCommision.commissionUkrBank.innerHTML = 5
-      };
-         
-   if (transferValue >= 2500) {
-      kdv.commissionForeignBank.innerHTML = (transferValue*1.02).toFixed(2);
-      kdvCommision.commissionForeignBank.innerHTML = (transferValue*0.02).toFixed(2)
-      } 
-      else if (transferValue <= 0) {
-         kdv.commissionForeignBank.innerHTML = '0';
-         kdvCommision.commissionForeignBank.innerHTML = 0;
-      }
-      else {
-         kdv.commissionForeignBank.innerHTML = (Number(transferValue)+50).toFixed(2);
-         kdvCommision.commissionForeignBank.innerHTML = 50
-      };
+   while (amountDebitValue >= 0) {
 
-};
-
-const kuSumOwnFunds = {
-   valueTransfer: document.getElementById('own-funds-ku-transfer-value-ku'),
-   commissionOnKu: document.getElementById('own-funds-ku-commission-on-ku'),
-   commissionOnKdv: document.getElementById('own-funds-ku-commission-on-kdv'),
-   commissionUkrBank: document.getElementById('own-funds-ku-commission-ukr-bank'),
-   commissionForeignBank: document.getElementById('own-funds-ku-commission-foreign-bank'),   
-};
-
-const kuSumCreditFunds = {
-   valueTransfer: document.getElementById('credits-funds-ku-transfer-value-ku'),
-   commissionOnKu: document.getElementById('credits-funds-ku-commission-on-ku'),   
-   commissionOnKdv: document.getElementById('credits-funds-ku-commission-on-kdv'),
-   commissionUkrBank: document.getElementById('credits-funds-ku-commission-ukr-bank'),
-   commissionForeignBank: document.getElementById('credits-funds-ku-commission-foreign-bank'),   
-};
-
-const kuTotalCommissionValue = {
-   valueTransfer: document.getElementById('total-ku-transfer-value-ku'),   
-   commissionOnKu: document.getElementById('total-ku-commission-on-ku'),
-   commissionOnKdv: document.getElementById('total-ku-commission-on-kdv'),
-   commissionUkrBank: document.getElementById('total-ku-commission-ukr-bank'),
-   commissionForeignBank: document.getElementById('total-ku-commission-foreign-bank'),   
-};
-
-function commisionTransferValueKU () {
-
-};
+      // dateModule(date, amountDebitValue, amountFillValue);
+      // amountDebitValue -= amountFillValue
+      let date = new Date();
+      // date = (date + 259200000);
 
 
-const sumOwnFunds ={
-valueTransfer: document.getElementById('own-funds-transfer-value'),
-commissionOnKu: document.getElementById('own-funds-ku-commission-on-ku'),
-commissionOnKdv: document.getElementById('own-funds-ku-commission-on-kdv'),
-commissionUkrBank: document.getElementById('own-funds-ku-commission-ukr-bank'),
-commissionForeignBank: document.getElementById('own-funds-ku-commission-foreign-bank'),
-};
-const sumCreditFunds ={
-valueTransfer: document.getElementById('credits-funds-transfer-value'),
-commissionOnKu: document.getElementById('credits-funds-commission-on-ku'),
-commissionOnKdv: document.getElementById('credits-funds-commission-on-kdv'),
-commissionUkrBank: document.getElementById('credits-funds-commission-ukr-bank'),
-commissionForeignBank: document.getElementById('credits-funds-commission-foreign-bank'),
-};
-const totalCommissionValue ={
-valueTransfer: document.getElementById('total-transfer-value'),
-commissionOnKu: document.getElementById('total-commission-on-ku'),
-commissionOnKdv: document.getElementById('total-commission-on-kdv'),
-commissionUkrBank: document.getElementById('total-commission-ukr-bank'),
-commissionForeignBank: document.getElementById('total-commission-foreign-bank'),
+      let lastDayDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      let lastDayOfMounth = Number(lastDayDate.getDate());
+      let monthOfPeriod = new Date(date.getMonth() + 1, date.getFullYear());
+      // console.log(date.getMonth() + 1, date.getFullYear());
+      // console.log(monthOfPeriod);
+      let cellDate = document.createElement('td');
+      let cellTextDate = document.createTextNode(`${date.getMonth()+ 1} , ${date.getFullYear()}`);
+      cellDate.appendChild(cellTextDate);
+
+
+      // calculation
+
+
+      let procentValeu = Number(typeCard.value);
+   let dateFillValue = Number(dateFill.value);
+   // console.log(lastDayOfMounth);
+
+   let daylyProcentRate = (procentValeu*12/365/100);
+   let daylyProcentValueStart = Number((daylyProcentRate * amountDebitValue).toFixed(2));
+   let daylyProcentValueEnd = Number(((amountDebitValue  - amountFillValue)* daylyProcentRate).toFixed(2));
+   let mounthProcentValue = Number(((daylyProcentValueStart * dateFillValue) + (daylyProcentValueEnd * (lastDayOfMounth - dateFillValue)) ).toFixed(2));
+   
+   // console.log(daylyProcentRate);
+   // console.log(daylyProcentValueStart);
+   // console.log(daylyProcentValueEnd);
+   console.log(mounthProcentValue);
+
+   let cellDebit = document.createElement('td');
+   let cellTextDebit = document.createTextNode(amountDebitValue.toFixed(2));
+   cellDebit.appendChild(cellTextDebit);
+
+   let cellProcent = document.createElement('td');
+   let cellTextProcent = document.createTextNode(mounthProcentValue);
+   cellProcent.appendChild(cellTextProcent);
+   
+   let cellSaldo = document.createElement('td');
+   let cellTextSaldo = document.createTextNode((amountFillValue - mounthProcentValue).toFixed(2));
+   cellSaldo.appendChild(cellTextSaldo);
+
+   let procentTable = document.querySelector('.procent-calculation__info');
+   let row = document.createElement('tr');
+   row.appendChild(cellDate);
+   row.appendChild(cellDebit);
+   row.appendChild(cellProcent);
+   row.appendChild(cellSaldo);
+   procentTable.appendChild(row).classList.add('row'); 
+   amountDebitValue = amountDebitValue + mounthProcentValue - amountFillValue;
+   totalProcentCount = Number(totalProcentCount + mounthProcentValue);
+
+   let mounthCounter = document.querySelectorAll('.row');
+
+   totalProcent.totalValue.innerHTML = totalProcentCount.toFixed(2);
+   totalProcent.totalTime.innerHTML = mounthCounter.length;
+
+   if (mounthProcentValue >= amountFillValue) {
+      alert('Сума нарахованих Відсотків перевищує суму щомісячниго платежу, збільшість Суму щомісячного платежу')
+      return;
+   }
+   };
 };
