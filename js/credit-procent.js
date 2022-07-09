@@ -67,12 +67,12 @@ function createTable() {
    if (amountDebitValue < amountFillValue) {
       daylyProcentValueEnd = 0
    };
+
+   if (dateFillValue >= lastDayOfMounth) {
+      dateFillValue = lastDayOfMounth;
+   };
    let mounthProcentValue = Number(((daylyProcentValueStart * dateFillValue) + (daylyProcentValueEnd * (lastDayOfMounth - dateFillValue)) ).toFixed(2));
    
-   // console.log(daylyProcentRate);
-   // console.log(daylyProcentValueStart);
-   // console.log(daylyProcentValueEnd);
-   // console.log(mounthProcentValue);
 
    let cellDebit = document.createElement('td');
    let cellTextDebit = document.createTextNode(amountDebitValue.toFixed(2));
