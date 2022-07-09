@@ -12,69 +12,70 @@ const totalProcent = {
    totalValue: document.getElementById('total-procent-total-value'),
 };
 
-// let procentValeu = Number(typeCard.value);
-// let amountDebitValue = Number(amountDebit.value);
-// let amountFillValue = Number(amountFill.value);
-// let dateFillValue = Number(dateFill.value);
-
-
 inputValue.addEventListener('click', createTable);
 
 function createTable() {
    let procentTable = document.querySelector('.procent-calculation__info');
+   // let procentTableChild = procentTable.children;
+   let tableOldInfo = document.querySelectorAll('.row');
+   if (tableOldInfo.length != 0) {
+      for (let i = 0; i < tableOldInfo.length; i++){
+      tableOldInfo[i].remove();
+      }
+   };
+
    let amountDebitValue = Number(amountDebit.value);
    let amountFillValue = Number(amountFill.value);
-
-   while (amountDebitValue >= amountFillValue * -1) {
-      let dateNow = new Date();
-      date = new Date(dateNow.getMonth() + 1);
-      dateModule(date, amountDebitValue, amountFillValue);
-      amountDebitValue -= amountFillValue
-    };
-};
+   let totalProcentCount = Number(0);
+   let todayDay = new Date();
+   let unixDay = todayDay.getTime();
+   totalProcent.amountDebit.innerHTML = amountDebitValue;
 
 
 
-function testing() {
-let date = new Date('06/01/2022');
-dateModule(date)
+   while (amountDebitValue >= 0) {
 
-};
-
-function dateModule (date, amountDebitValue, amountFillValue) {
-   let lastDayDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
-   let lastDayOfMounth = Number(lastDayDate.getDate());
-   let monthOfPeriod = new Date(date.getMonth() + 1, date.getFullYear());
-   console.log(date.getMonth() + 1, date.getFullYear());
-   console.log(monthOfPeriod);
-   let cellDate = document.createElement('td');
-   let cellTextDate = document.createTextNode(`${date.getMonth()+ 1} , ${date.getFullYear()}`);
-   cellDate.appendChild(cellTextDate);
-
-   calculation(lastDayOfMounth, cellDate, amountDebitValue, amountFillValue);
-   return amountDebitValue;
-};
+      const plusMonth =  2592000000;
 
 
+      let date = new Date(unixDay);
 
 
-function calculation (lastDayOfMounth, cellDate, amountDebitValue, amountFillValue) {
-   let procentValeu = Number(typeCard.value);
+      let lastDayDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+      let lastDayOfMounth = Number(lastDayDate.getDate());
+      let monthOfPeriod = new Date(date.getMonth() + 1, date.getFullYear());
+      // console.log(date.getMonth() + 1, date.getFullYear());
+      // console.log(monthOfPeriod);
+      let cellDate = document.createElement('td');
+      let cellTextDate = document.createTextNode(`${date.getMonth()+ 1} , ${date.getFullYear()}`);
+      cellDate.appendChild(cellTextDate);
+
+
+      // calculation
+
+
+      let procentValeu = Number(typeCard.value);
    let dateFillValue = Number(dateFill.value);
-   console.log(lastDayOfMounth);
+   // console.log(lastDayOfMounth);
+
+
+
 
    let daylyProcentRate = (procentValeu*12/365/100);
    let daylyProcentValueStart = Number((daylyProcentRate * amountDebitValue).toFixed(2));
    let daylyProcentValueEnd = Number(((amountDebitValue  - amountFillValue)* daylyProcentRate).toFixed(2));
+   if (amountDebitValue < amountFillValue) {
+      daylyProcentValueEnd = 0
+   };
    let mounthProcentValue = Number(((daylyProcentValueStart * dateFillValue) + (daylyProcentValueEnd * (lastDayOfMounth - dateFillValue)) ).toFixed(2));
    
-   console.log(daylyProcentRate);
-   console.log(daylyProcentValueStart);
-   console.log(daylyProcentValueEnd);
-   console.log(mounthProcentValue);
+   // console.log(daylyProcentRate);
+   // console.log(daylyProcentValueStart);
+   // console.log(daylyProcentValueEnd);
+   // console.log(mounthProcentValue);
 
    let cellDebit = document.createElement('td');
-   let cellTextDebit = document.createTextNode(amountDebitValue);
+   let cellTextDebit = document.createTextNode(amountDebitValue.toFixed(2));
    cellDebit.appendChild(cellTextDebit);
 
    let cellProcent = document.createElement('td');
@@ -82,7 +83,7 @@ function calculation (lastDayOfMounth, cellDate, amountDebitValue, amountFillVal
    cellProcent.appendChild(cellTextProcent);
    
    let cellSaldo = document.createElement('td');
-   let cellTextSaldo = document.createTextNode(amountFillValue - mounthProcentValue);
+   let cellTextSaldo = document.createTextNode((amountFillValue - mounthProcentValue).toFixed(2));
    cellSaldo.appendChild(cellTextSaldo);
 
    let procentTable = document.querySelector('.procent-calculation__info');
@@ -91,8 +92,29 @@ function calculation (lastDayOfMounth, cellDate, amountDebitValue, amountFillVal
    row.appendChild(cellDebit);
    row.appendChild(cellProcent);
    row.appendChild(cellSaldo);
-   procentTable.appendChild(row); 
-   amountDebitValue += mounthProcentValue;
-   return amountDebitValue;
+   procentTable.appendChild(row).classList.add('row'); 
+   amountDebitValue = amountDebitValue + mounthProcentValue - amountFillValue;
+   totalProcentCount = Number(totalProcentCount + mounthProcentValue);
 
-}; 
+   let mounthCounter = document.querySelectorAll('.row');
+
+   let totalTimeYear = Math.floor(mounthCounter.length/12);
+   let totalTimeMonth = mounthCounter.length % 12;
+
+   totalProcent.totalValue.innerHTML = totalProcentCount.toFixed(2);
+   totalProcent.totalTime.innerHTML = `${totalTimeYear} рік(років), ${totalTimeMonth} місяців`;
+   totalProcent.lastDate.innerHTML = (`${date.getMonth()+ 1} , ${date.getFullYear()}`);
+   unixDay = unixDay + plusMonth;
+   // console.log(unixDay);
+   // console.log(date);
+   // console.log(lastDayOfMounth);
+
+
+
+
+   if (mounthProcentValue >= amountFillValue) {
+      alert(`Сума нарахованих Відсотків (${mounthProcentValue}) перевищує суму щомісячниго платежу, збільшість Суму щомісячного платежу`)
+      return;
+   }
+    };
+};
