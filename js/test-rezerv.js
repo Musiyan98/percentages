@@ -27,13 +27,18 @@ function createTable() {
    let amountDebitValue = Number(amountDebit.value);
    let amountFillValue = Number(amountFill.value);
    let totalProcentCount = Number(0);
+   let todayDay = new Date();
+   let unixDay = todayDay.getTime();
+   totalProcent.amountDebit.innerHTML = amountDebitValue;
+
+
 
    while (amountDebitValue >= 0) {
 
-      // dateModule(date, amountDebitValue, amountFillValue);
-      // amountDebitValue -= amountFillValue
-      let date = new Date();
-      // date = (date + 259200000);
+      const plusMonth =  2592000000;
+
+
+      let date = new Date(unixDay);
 
 
       let lastDayDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
@@ -53,15 +58,21 @@ function createTable() {
    let dateFillValue = Number(dateFill.value);
    // console.log(lastDayOfMounth);
 
+
+
+
    let daylyProcentRate = (procentValeu*12/365/100);
    let daylyProcentValueStart = Number((daylyProcentRate * amountDebitValue).toFixed(2));
    let daylyProcentValueEnd = Number(((amountDebitValue  - amountFillValue)* daylyProcentRate).toFixed(2));
+   if (amountDebitValue < amountFillValue) {
+      daylyProcentValueEnd = 0
+   };
    let mounthProcentValue = Number(((daylyProcentValueStart * dateFillValue) + (daylyProcentValueEnd * (lastDayOfMounth - dateFillValue)) ).toFixed(2));
    
    // console.log(daylyProcentRate);
    // console.log(daylyProcentValueStart);
    // console.log(daylyProcentValueEnd);
-   console.log(mounthProcentValue);
+   // console.log(mounthProcentValue);
 
    let cellDebit = document.createElement('td');
    let cellTextDebit = document.createTextNode(amountDebitValue.toFixed(2));
@@ -87,11 +98,22 @@ function createTable() {
 
    let mounthCounter = document.querySelectorAll('.row');
 
+   let totalTimeYear = Math.floor(mounthCounter.length/12);
+   let totalTimeMonth = mounthCounter.length % 12;
+
    totalProcent.totalValue.innerHTML = totalProcentCount.toFixed(2);
-   totalProcent.totalTime.innerHTML = mounthCounter.length;
+   totalProcent.totalTime.innerHTML = `${totalTimeYear} рік(років), ${totalTimeMonth} місяців`;
+   totalProcent.lastDate.innerHTML = (`${date.getMonth()+ 1} , ${date.getFullYear()}`);
+   unixDay = unixDay + plusMonth;
+   // console.log(unixDay);
+   // console.log(date);
+   // console.log(lastDayOfMounth);
+
+
+
 
    if (mounthProcentValue >= amountFillValue) {
-      alert('Сума нарахованих Відсотків перевищує суму щомісячниго платежу, збільшість Суму щомісячного платежу')
+      alert(`Сума нарахованих Відсотків (${mounthProcentValue}) перевищує суму щомісячниго платежу, збільшість Суму щомісячного платежу`)
       return;
    }
     };
