@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="uk">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,16 @@
    <link rel="stylesheet" href="./css/styles.min.css">
    <title>Калькулятор Відсотків</title>
 </head>
+
 <body>
-   
+
    <h1 class="page-title">КОМІСІЇ ПРИ ПЕРЕКАЗАХ З КАРТИ</h1>
 
    <form class="commission">
       <div class="column">
          <label class="commission__label" for="type-card">
             <span class="commission__label-text"> Переказ з карти</span>
-            <select  class="commission__input" id="type-card">
+            <select class="commission__input" id="type-card">
                <option value="kdv">Карта для виплат</option>
                <option value="ku">карта універсальна</option>
             </select>
@@ -31,19 +33,19 @@
       </div>
       <div class="type-of-money-radio is-hiden">
          <p class="type-money-subtitle">переказ за рахунок:</p>
-      <label class="type-money-label" for="only-own-funds">
-         <input type="radio" checked name="type-money" class="type-money" id="only-own-funds" value="only-own-funds">
-         Лише особистих коштів
-      </label> <br>
-      <label class="type-money-label" for="only-credit-funds">
-         <input type="radio" name="type-money" class="type-money" id="only-credit-funds" value="only-credit-funds">
-         Лише кредитних коштів
-      </label><br>
-      <label class="type-money-label" for="mix-funds">
-         <input type="radio"  name="type-money" class="type-money" id="mix-funds" value="mix-funds">
-         Частина коштів особисті, решта кредитні
-      </label>
-   </div>
+         <label class="type-money-label" for="only-own-funds">
+            <input type="radio" checked name="type-money" class="type-money" id="only-own-funds" value="only-own-funds">
+            Лише особистих коштів
+         </label> <br>
+         <label class="type-money-label" for="only-credit-funds">
+            <input type="radio" name="type-money" class="type-money" id="only-credit-funds" value="only-credit-funds">
+            Лише кредитних коштів
+         </label><br>
+         <label class="type-money-label" for="mix-funds">
+            <input type="radio" name="type-money" class="type-money" id="mix-funds" value="mix-funds">
+            Частина коштів особисті, решта кредитні
+         </label>
+      </div>
 
       <button type="button" id="send-value">Розрахувати</button>
    </form>
@@ -51,7 +53,7 @@
 
    <table class="commission-table commission-table-ku">
       <caption class="commission-table__title">
-         
+
       </caption>
       <thead class="commission-table__head">
          <tr>
@@ -59,12 +61,12 @@
             <th>сума</th>
             <th>на КУ/КДВ без оплати комісії отримувача</th>
             <!-- <th>на КДВ без оплати комісії отримувача</th> -->
-            <th>на КДВ з оплптою комісії отримувача</th>
+            <th>на КДВ з оплатою комісії отримувача</th>
             <th>на карту іншого українського банку</th>
             <th>на карту закордонного банку</th>
          </tr>
-       </thead>
-       <tbody class="commission-table__calculations">
+      </thead>
+      <tbody class="commission-table__calculations">
          <tr class="amount-payment">
             <td id="amount-payment-subtitle">Сума до списання</td>
             <td id="amount-payment-transfer-value">0</td>
@@ -73,8 +75,8 @@
             <td id="amount-payment-commission-on-kdv-with-receiver">0</td>
             <td id="amount-payment-commission-ukr-bank">0</td>
             <td id="amount-payment-commission-foreign-bank">0</td>
-          </tr>
-          <tr class="own-funds is-hiden">
+         </tr>
+         <tr class="own-funds is-hiden">
             <td id="own-funds-subtitle">Комісія за проведений платіж</td>
             <td id="own-funds-transfer-value">0</td>
             <td id="own-funds-commission-on-ku">0</td>
@@ -82,8 +84,8 @@
             <td id="own-funds-commission-on-kdv-with-receiver">0</td>
             <td id="own-funds-commission-ukr-bank">0</td>
             <td id="own-funds-commission-foreign-bank">0</td>
-          </tr>
-          <tr class="credit-funds is-hiden">
+         </tr>
+         <tr class="credit-funds is-hiden">
             <td id="credits-funds-subtitle">Комісія в рахунок кредитних коштів</td>
             <td id="credits-funds-transfer-value">0</td>
             <td id="credits-funds-commission-on-ku">0</td>
@@ -91,9 +93,9 @@
             <td id="credits-funds-commission-on-kdv-with-receiver">0</td>
             <td id="credits-funds-commission-ukr-bank">0</td>
             <td id="credits-funds-commission-foreign-bank">0</td>
-          </tr>
+         </tr>
       </tbody>
-      <tfoot >
+      <tfoot>
          <tr class="total-commission">
             <td id="total-commission-subtitle">загальна сума комісії</td>
             <td id="total-commission-value">0</td>
@@ -106,8 +108,9 @@
       </tfoot>
 
    </table>
-   
+
    <script src="./js/universalProcent.js"></script>
 
 </body>
+
 </html>
